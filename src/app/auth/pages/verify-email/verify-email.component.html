@@ -1,0 +1,15 @@
+
+<div>
+  <div class="form-group" *ngIf="authService.userData as user">
+    <h4 class="text-center">We have sent a confirmation email to <strong>{{user.email}}</strong>.</h4>
+  </div>
+
+ <div class="text-center">
+    <button type="button" class="btn btn-primary" (click)="sendVerificationMail()"> 
+      Resend Verification Email
+    </button>
+ </div>
+ <div class="my-4 text-center">
+  <a class="btn btn-outline-info" routerLink="/login">Go back to Login ?</a>
+</div>
+</div>

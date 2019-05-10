@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="email" 
+      placeholder="Enter email" 
+      formControlName="email"
+      name="email" 
+      [ngClass]="{'is-invalid': form.get('email').invalid && form.get('email').touched}"
+    >
+    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="password" 
+      placeholder="Password" 
+      formControlName="password"
+      name="password"
+      [ngClass]="{'is-invalid': form.get('password').invalid && form.get('password').touched}"
+    >
+    <div *ngIf="form.get('password').invalid && form.get('password').touched">
+      <small class="pr-2" *ngIf="form.get('password').errors['required']">Password is empty</small>
+      <small *ngIf="form.get('password').errors['minlength']">Min chars {{ form.get('password').errors['minlength']['requiredLength'] }}</small>
+    </div>
+  </div>
+  <div class="d-flex justify-content-between align-items-center">
+   <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Sign In</button>
+   <button type="button" class="btn btn-danger" (click)="googleAuth()">
+    Google
+  </button>
+   
+  </div>
+  <div>
+    <div class="form-group text-center mb-2 mt-3">
+      <a class="btn d-block btn-info" routerLink="/registration">Registration</a>
+    </div>
+  </div>
+  <div class="form-group text-center">
+    <a  routerLink="/forgot-password">Forgot Password?</a>
+  </div>
+  
+</form>
